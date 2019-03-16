@@ -1,0 +1,110 @@
+<doctype html5>
+<html>
+	<head>
+		<title>
+			Forum | Tech Community
+		</title>
+		<link rel="stylesheet" href="forum_style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Merienda' rel='stylesheet'>
+		</head>
+	
+	<body>
+
+		<div class="top-heading" style="font-family: 'Merienda';">
+			<h2> Tech community </h2>
+		</div>
+		<div class="header" id="scroll-function">
+			<h2>Discussion Forum</h2>
+		</div>
+		<div class="forum">
+			<!--post-->
+			<div>
+				<div class="chip">
+				  <img src="img-avatar.png" alt="Person" width="96" height="96">
+				   user
+				</div>
+				<button class="accordion">!! query name !!<div class="date-right">date say 10/1/2018</div></button>
+				<div class="panel">
+					<p>!! query details here !!</p>
+					<i onclick="like(this)" class="fa fa-thumbs-up"></i><p id="like-message"></p>
+					<button id="myBtn" class="button reply">Reply</button>
+				</div>
+			</div>
+			<!--for generating reply pop-up-->
+			<div id="myModal" class="modal">
+			  <div class="modal-content">
+				<span class="close">&times;</span>
+				<input class="query" type="text" value="Reply" name="query"/>
+				<input type="submit" placeholder="Submit" onclick="submit-reply(this)" class="button"/>
+			  </div>
+			</div>
+
+			<script>
+				var acc = document.getElementsByClassName("accordion");
+				var i;
+
+				for (i = 0; i < acc.length; i++) {
+					acc[i].addEventListener("click", function() {
+						this.classList.toggle("active");
+						var panel = this.nextElementSibling;
+						if (panel.style.display === "block") {
+							panel.style.display = "none";
+						} else {
+							panel.style.display = "block";
+						}
+					});
+				}
+			</script>
+			<script>
+				window.onscroll = function() {myFunction()};
+
+				var header = document.getElementById("scroll-function");
+				var sticky = header.offsetTop;
+
+				function myFunction() {
+				  if (window.pageYOffset >= sticky) {
+					/* give the like count increment */
+					header.classList.add("sticky");
+				  } else {
+					header.classList.remove("sticky");
+				  }
+				}
+			function like(x) {
+				
+				if(x.classList.toggle("fa-thumbs-down"))  {
+				document.getElementById("like-message").innerHTML = "liked";
+				}
+				else{
+				document.getElementById("like-message").innerHTML = "like";
+				}
+				
+			}
+			</script>
+			
+			<script>
+			var modal = document.getElementById('myModal');
+			var btn = document.getElementById("myBtn");
+			var span = document.getElementsByClassName("close")[0];
+			btn.onclick = function() {
+				modal.style.display = "block";
+			}
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+			</script>	
+		</div>
+		<<div class="footer">
+		  <input class="query" type="text" value="query" name="query"/>
+		  <input type="submit" placeholder="Submit" onclick="post-query(this)" class="button"/>
+		</div> 
+		<br><br><br><br><br><br><br><br><br>
+
+		
+	</body>
+</html>
